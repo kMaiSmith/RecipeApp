@@ -1,6 +1,8 @@
 # built application files
 *.apk
 *.ap_
+*.iml
+out/*
 
 # files for the dex VM
 *.dex
@@ -18,3 +20,6 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# IntelliJ project files
+.idea/*
