@@ -1,18 +1,18 @@
 package com.kmaismith.RecipeApp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.widget.*;
+import com.kmaismith.RecipeApp.Model.IngredientList;
 
 public class RecipeApp extends Activity
 {
-    ArrayList<String> RecipeList = new ArrayList<String>();
+    private IngredientList mIngredientList;
+    private Button mIngredientSubmitButton;
+    private EditText mIngredientInputText;
+    private ListView mIngredientListView;
+    private ArrayAdapter<String> mIngredientListAdapter;
 
     /** Called when the activity is first created. */
     @Override
@@ -20,22 +20,31 @@ public class RecipeApp extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        mIngredientList = new IngredientList();
+        mIngredientInputText = (EditText) findViewById(R.id.ingredient_input);
+        mIngredientListView = (ListView) findViewById(R.id.ingredient_list);
+
+        mIngredientListAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                mIngredientList.getIngredients());
+        mIngredientListView.setAdapter(mIngredientListAdapter);
+
+        mIngredientSubmitButton = (Button) findViewById(R.id.submit_ingredient_button);
+        mIngredientSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitRecipe();
+            }
+        });
     }
 
-    public void submitRecipe(View view) {
-        EditText editText = (EditText) findViewById(R.id.edit_message);
+    public void submitRecipe() {
+        String inputIngredient = mIngredientInputText.getText().toString();
 
-        String inputRecipe = editText.getText().toString();
+        mIngredientList.addIngredient(inputIngredient);
+        mIngredientInputText.setText("");
 
-        RecipeList.add(inputRecipe);
-        editText.setText("");
-
-        Context context = getApplicationContext();
-        CharSequence text = inputRecipe + " Added to Ingredient List";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
-        toast.show();
+        mIngredientListAdapter.notifyDataSetChanged();
     }
 }
