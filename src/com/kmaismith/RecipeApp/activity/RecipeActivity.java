@@ -1,12 +1,14 @@
-package com.kmaismith.RecipeApp;
+package com.kmaismith.RecipeApp.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import com.kmaismith.RecipeApp.Model.IngredientList;
+import com.kmaismith.RecipeApp.R;
+import com.kmaismith.RecipeApp.model.IngredientList;
+import com.kmaismith.RecipeApp.application.RecipeApplication;
 
-public class RecipeApp extends Activity
+public class RecipeActivity extends Activity
 {
     private IngredientList mIngredientList;
     private Button mIngredientSubmitButton;
@@ -21,7 +23,7 @@ public class RecipeApp extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mIngredientList = new IngredientList();
+        mIngredientList = ((RecipeApplication)getApplication()).getIngredientList();
         mIngredientInputText = (EditText) findViewById(R.id.ingredient_input);
         mIngredientListView = (ListView) findViewById(R.id.ingredient_list);
 
