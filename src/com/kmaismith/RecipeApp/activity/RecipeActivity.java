@@ -35,7 +35,7 @@ public class RecipeActivity extends Activity
         mIngredientSubmitButton = (Button) findViewById(R.id.submit_ingredient_button);
         mIngredientSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 submitRecipe();
             }
         });
@@ -44,7 +44,7 @@ public class RecipeActivity extends Activity
         mIngredientListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String currentListItem = mIngredientListView.getItemAtPosition(position).toString();
                 mIngredientListAdapter.remove(currentListItem);
                 mIngredientList.removeIngredient(position);

@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">RecipeApp</string>
     <string name="ingredient_entry_message">Enter Ingredient</string>
-    <string name="button_ingredient_send">Add</string>
+    <string name="button_ingredient_add">Add</string>
     <string name="ingredient_entry_success_message">Added to Recipe List</string>
 </resources>
