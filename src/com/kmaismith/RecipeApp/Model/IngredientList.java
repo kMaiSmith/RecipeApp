@@ -15,11 +15,14 @@ public class IngredientList {
 
     public IngredientList() {
         Ingredients = new ArrayList<String>();
-
     }
 
     public void addIngredient(String ingredient) {
         Ingredients.add(ingredient);
+    }
+
+    public boolean removeIngredient(Integer ingredientIndex) {
+        return Ingredients.remove(ingredientIndex);
     }
 
     public ArrayList<String> getIngredients() {
